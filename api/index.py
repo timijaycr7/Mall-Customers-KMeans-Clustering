@@ -58,11 +58,10 @@ class handler(BaseHTTPRequestHandler):
         path = parsed.path.rstrip("/")
         params = parse_qs(parsed.query)
 
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Access-Control-Allow-Origin", "*")
-
         if path == "/api/cluster":
             self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(json.dumps(RESULTS, indent=2).encode())
 
@@ -72,18 +71,24 @@ class handler(BaseHTTPRequestHandler):
                 score = float(params["score"][0])
             except (KeyError, IndexError, ValueError):
                 self.send_response(400)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
                 self.wfile.write(json.dumps({
                     "error": "Missing or invalid parameters. Usage: /api/predict?income=60&score=50"
                 }, indent=2).encode())
                 return
             self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             result = predict_cluster(income, score)
             self.wfile.write(json.dumps(result, indent=2).encode())
 
         else:
             self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             response = {
                 "project": "Mall Customers K-Means Clustering API",
