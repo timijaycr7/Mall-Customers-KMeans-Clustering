@@ -337,7 +337,7 @@ The REST API is deployed as a Python serverless function on Vercel. It serves pr
 
 ## Author
 
-**Bankole Jeremiah Adeoye**
+**Rayesomo Timilehin**
 - GitHub: [@timijaycr7](https://github.com/timijaycr7)
 - Email: libertytimilehin60@gmail.com
 
