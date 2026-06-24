@@ -1,2 +1,7 @@
 {
+  "functions": {
+    "api/cluster.py": {
+      "includeFiles": "api/cluster_results.json"
+    }
+  }
 }
