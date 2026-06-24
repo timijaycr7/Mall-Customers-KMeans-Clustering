@@ -173,6 +173,46 @@ Returns the complete clustering results including model metadata, K evaluation m
 }
 ```
 
+#### `GET /api/predict?income=<value>&score=<value>`
+Real-time prediction for a new customer. Applies the same preprocessing pipeline (StandardScale -> Power(5) -> StandardScale) and assigns the nearest cluster using embedded model centroids — no scikit-learn dependency at runtime.
+
+**Example:** `/api/predict?income=75&score=90`
+
+**Response:**
+```json
+{
+  "annual_income": 75.0,
+  "spending_score": 90.0,
+  "cluster": 4,
+  "segment_name": "Big Spenders"
+}
+```
+
+### Prediction Architecture
+
+```
+User Input (income, score)
+        │
+        ▼
+┌───────────────────┐     ┌──────────────────────┐
+│  Vercel API       │     │  Embedded Model       │
+│  /api/predict     │────▶│  - Scaler params      │
+│                   │     │  - Power transform    │
+│                   │◀────│  - Centroids (5)      │
+│  Returns JSON     │     │  - Euclidean distance │
+└───────────────────┘     └──────────────────────┘
+```
+
+### Segment Names
+
+| Cluster | Segment Name | Description |
+|---------|-------------|-------------|
+| 0 | Average Joes | Moderate income, moderate spending |
+| 1 | Elite Outliers | Very high income, moderate spending |
+| 2 | Budget Savers | Moderate income, very low spending |
+| 3 | Affluent Moderates | High income, moderate spending |
+| 4 | Big Spenders | Moderate income, very high spending |
+
 ---
 
 ## Streamlit Dashboard

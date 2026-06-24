@@ -35,3 +35,13 @@ def get_k_evaluation_df(results: dict) -> pd.DataFrame:
     df = pd.DataFrame(results["k_evaluation"])
     df.columns = ["K", "Inertia", "Silhouette Score"]
     return df
+
+
+def predict_segment(income: float, score: float) -> dict:
+    response = requests.get(
+        f"{API_BASE}/api/predict",
+        params={"income": income, "score": score},
+        timeout=15,
+    )
+    response.raise_for_status()
+    return response.json()
