@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/cluster", "destination": "/api/cluster" },
-    { "source": "/api", "destination": "/api/index" }
+    { "source": "/api/(.*)", "destination": "/api" }
   ]
 }
