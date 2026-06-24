@@ -335,22 +335,11 @@ The REST API is deployed as a Python serverless function on Vercel. It serves pr
 
 ---
 
-## Future Improvements
-
-- [ ] Add more features (Age, Gender) with encoding for richer segmentation
-- [ ] Implement DBSCAN and Hierarchical Clustering for comparison
-- [ ] Add real-time clustering with user-uploaded CSV files
-- [ ] Build customer lifetime value (CLV) prediction per segment
-- [ ] Add A/B testing simulation for marketing strategies
-- [ ] Integrate with a database for dynamic data ingestion
-
----
-
 ## Author
 
 **Bankole Jeremiah Adeoye**
 - GitHub: [@timijaycr7](https://github.com/timijaycr7)
-- Email: bankolejeremiahadeoye@gmail.com
+- Email: libertytimilehin60@gmail.com
 
 ---
 
